@@ -1,9 +1,11 @@
 package th.ac.tu.siit.its333.lab3exercise1;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.*;
 
 
 public class CourseListActivity extends ActionBarActivity {
@@ -12,6 +14,30 @@ public class CourseListActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
+
+        TextView tvList = (TextView)findViewById(R.id.tvList);
+
+        Intent i = getIntent();
+        String[] input = i.getStringArrayExtra("fromMA");
+
+        if(input.length == 0){
+
+            tvList.setText("No course to be displayed");
+
+        }else {
+
+            String output = "List of courses\n\n";
+
+            for (int index = 0; index < input.length; index++) {
+                output = output + input[index] + "\n";
+            }
+
+
+            tvList.setText(output);
+
+        }
+
+
     }
 
 
